@@ -48,9 +48,9 @@ Let's chat about potential projects, job opportunities, or any other collaborati
   [![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/khubaibkhan) [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/18.bscs) [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/MuhammadKhubaibImtiaz) [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/muhammadkhubaibimtiaz) 
 
 ## Screenshots
-| <img src="https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assets/screenshots/1.png" alt="Mobile Screenshot" width="300"> |
-| ![Screenshot 2](https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assets/screenshots/2.png) |
-| ![Screenshot 3](https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assets/screenshots/3.png) |
+| <img src="https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assests/screenshots/1.png" alt="Mobile Screenshot" width="300"> |
+| ![Screenshot 2](https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assests/screenshots/2.png) |
+| ![Screenshot 3](https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assests/screenshots/3.png) |
 
 ## Demo
 <video width="320" height="240" controls>
