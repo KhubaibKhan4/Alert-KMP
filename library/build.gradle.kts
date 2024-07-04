@@ -1,4 +1,5 @@
 import com.vanniktech.maven.publish.SonatypeHost
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -7,6 +8,7 @@ plugins {
 }
 
 kotlin {
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
     targetHierarchy.default()
     jvm()
     androidTarget {
@@ -101,3 +103,8 @@ mavenPublishing {
 }
 
 task("testClasses") {}
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "17" // or "11" or "17"
+    }
+}
