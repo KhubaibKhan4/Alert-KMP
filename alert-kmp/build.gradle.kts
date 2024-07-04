@@ -1,5 +1,6 @@
 import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -19,6 +20,11 @@ kotlin {
             }
         }
         publishLibraryVariants("release", "debug")
+    }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+        binaries.executable()
     }
     js {
         browser()
@@ -57,6 +63,10 @@ kotlin {
             dependencies {
             }
         }
+        val wasmJsMain by getting {
+            dependencies {
+            }
+        }
     }
 }
 
@@ -71,7 +81,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.khubaibkhan4",
         artifactId = "alert-kmp",
-        version = "0.0.3"
+        version = "0.0.4"
     )
 
     // Configure POM metadata for the published artifact
