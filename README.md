@@ -24,7 +24,7 @@ Alert-KMP is a Kotlin Multiplatform (KMP) library designed to facilitate native 
 You can include Alert-KMP in your project by adding the following dependency:
 
 ```groovy
-implementation("io.github.khubaibkhan4:alert-kmp:0.0.1")
+implementation("io.github.khubaibkhan4:alert-kmp:0.0.2")
 ```
 
 ## Usage
