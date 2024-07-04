@@ -1,6 +1,7 @@
 [![official project](http://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 
-# Multiplatform library template
+# Alert-KMP
+Alert-KMP is a Compose Multipaltform Library that help us to Display the Native Notifications on Android, iOS, Web And Desktop.
 
 `implementation("io.github.khubaibkhan4:alert-kmp:0.0.1")`
 
