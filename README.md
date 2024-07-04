@@ -23,6 +23,7 @@ You can include Alert-KMP in your project by adding the following dependency:
 
 ```groovy
 implementation("io.github.khubaibkhan4:alert-kmp:0.0.1")
+```
 
 ## Usage
 ```groovy
