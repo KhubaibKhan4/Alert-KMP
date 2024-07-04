@@ -1,0 +1,1 @@
+internal expect fun Notify(message: String)
