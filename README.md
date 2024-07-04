@@ -1,4 +1,4 @@
-[![official project](http://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
+[![GitHub](https://img.shields.io/badge/official_project-not_official-red.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.khubaibkhan4/alert-kmp.svg?label=Maven%20Central)](https://search.maven.org/artifact/io.github.khubaibkhan4/alert-kmp)
 ![GitHub](https://img.shields.io/github/license/khubaibkhan4/alert-kmp)
 ![GitHub issues](https://img.shields.io/github/issues/khubaibkhan4/alert-kmp)
