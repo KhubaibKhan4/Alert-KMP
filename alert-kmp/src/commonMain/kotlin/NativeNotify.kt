@@ -1,1 +1,1 @@
-internal expect fun Notify(message: String)
+expect fun Notify(message: String)

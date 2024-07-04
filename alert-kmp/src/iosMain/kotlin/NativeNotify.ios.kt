@@ -7,7 +7,7 @@ import platform.UIKit.UIDevice
 import platform.UIKit.UIView
 import platform.darwin.*
 
-internal actual fun Notify(message: String) {
+actual fun Notify(message: String) {
     val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController?.modalViewController
     val alertController = UIAlertController.alertControllerWithTitle(
         title = UIDevice.currentDevice.systemName,

@@ -4,7 +4,7 @@ import java.awt.TrayIcon
 import javax.swing.JOptionPane
 
 
-internal actual fun Notify(message: String) {
+actual fun Notify(message: String) {
     if (SystemTray.isSupported()) {
         val tray = SystemTray.getSystemTray()
         val image = Toolkit.getDefaultToolkit().createImage("logo.webp")

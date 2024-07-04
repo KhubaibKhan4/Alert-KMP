@@ -6,7 +6,7 @@ import org.w3c.notifications.Notification
 import org.w3c.notifications.NotificationOptions
 import org.w3c.notifications.NotificationPermission
 
-internal actual fun Notify(message: String) {
+ actual fun Notify(message: String) {
     window.alert(message)
     if (!js("typeof Notification !== 'undefined'").unsafeCast<Boolean>()) {
         window.alert(message)
