@@ -20,6 +20,10 @@ kotlin {
         }
         publishLibraryVariants("release", "debug")
     }
+    js {
+        browser()
+        binaries.executable()
+    }
     listOf(
         iosX64(),
         iosArm64(),
@@ -49,6 +53,10 @@ kotlin {
             dependencies {
             }
         }
+        val jsMain by getting {
+            dependencies {
+            }
+        }
     }
 }
 
@@ -63,13 +71,13 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.khubaibkhan4",
         artifactId = "alert-kmp",
-        version = "0.0.1"
+        version = "0.0.2"
     )
 
     // Configure POM metadata for the published artifact
     pom {
         name.set("Alert-KMP")
-        description.set("Library used to open up a display notification on both Android/iOS/Web/Desktop")
+        description.set("Compose & Kotlin Multiplatform Library that Help You to Show Native Notifications on Android, iOS, Web & Desktop.")
         inceptionYear.set("2024")
         url.set("https://github.com/KhubaibKhan4/Alert-KMP")
 
