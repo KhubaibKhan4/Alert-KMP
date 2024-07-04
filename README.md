@@ -53,7 +53,7 @@ Let's chat about potential projects, job opportunities, or any other collaborati
  ![Screenshot 3](https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assests/screenshots/3.png) 
 
 ## Demo
-<video src="https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assests/screenshots/demo.mp4"></video>
+https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assests/screenshots/demo.mp4
 
   ## Contribution Guidelines
 We welcome contributions to the Alert-KMP Library Project! To contribute, please follow these guidelines:
