@@ -2,6 +2,8 @@
 
 # Multiplatform library template
 
+`implementation("io.github.khubaibkhan4:alert-kmp:0.0.1")`
+
 ## What is it?
 
 It is the barebones library project intended to quickly bootstrap a Kotlin Multiplatform library, that is deployable to Maven Central.
