@@ -1,9 +1,10 @@
+[![GitHub](https://img.shields.io/badge/official_project-not_official-red.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.khubaibkhan4/alert-kmp.svg?label=Maven%20Central)](https://search.maven.org/artifact/io.github.khubaibkhan4/alert-kmp)
-![GitHub Sponsors](https://img.shields.io/github/sponsors/khubaibkhan4)
-![GitHub issues](https://img.shields.io/github/issues/khubaibkhan4/alert-kmp)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/khubaibkhan4/alert-kmp)
-![GitHub last commit](https://img.shields.io/github/last-commit/khubaibkhan4/alert-kmp)
-![GitHub stars](https://img.shields.io/github/stars/khubaibkhan4/alert-kmp?style=social)
+[![GitHub License](https://img.shields.io/github/license/KhubaibKhan4/Alert-KMP)](https://github.com/KhubaibKhan4/Alert-KMP/blob/main/LICENSE)
+[![GitHub Issues](https://img.shields.io/github/issues/KhubaibKhan4/Alert-KMP)](https://github.com/KhubaibKhan4/Alert-KMP/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/KhubaibKhan4/Alert-KMP)](https://github.com/KhubaibKhan4/Alert-KMP/pulls)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/KhubaibKhan4/Alert-KMP)](https://github.com/KhubaibKhan4/Alert-KMP/commits/main)
+[![GitHub Stars](https://img.shields.io/github/stars/KhubaibKhan4/Alert-KMP?style=social)](https://github.com/KhubaibKhan4/Alert-KMP/stargazers)
 
 ## Overview
 
