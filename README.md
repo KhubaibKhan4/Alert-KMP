@@ -1,6 +1,5 @@
 # Alert-KMP
 
-[![GitHub](https://img.shields.io/badge/official_project-not_official-red.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.khubaibkhan4/alert-kmp.svg?label=Maven%20Central)](https://search.maven.org/artifact/io.github.khubaibkhan4/alert-kmp)
 ![GitHub License](https://img.shields.io/github/license/KhubaibKhan4/Alert-KMP)
 ![GitHub Issues](https://img.shields.io/github/issues/KhubaibKhan4/Alert-KMP)
@@ -23,9 +22,21 @@ Alert-KMP is a Kotlin Multiplatform (KMP) library designed to facilitate native 
 
 You can include Alert-KMP in your project by adding the following dependency:
 
-```groovy
-implementation("io.github.khubaibkhan4:alert-kmp:0.0.2")
+**Version Catelog**
 ```
+[versions]
+alertKmp = "0.0.4"
+
+[libraries]
+alert-kmp = { module = "io.github.khubaibkhan4:alert-kmp", version.ref = "alertKmp" }
+
+```
+
+
+```groovy
+implementation("io.github.khubaibkhan4:alert-kmp:0.0.4")
+```
+
 
 ## Usage
 ```groovy
