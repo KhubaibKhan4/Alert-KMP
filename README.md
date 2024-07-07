@@ -7,6 +7,12 @@
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/KhubaibKhan4/Alert-KMP)
 ![GitHub Stars](https://img.shields.io/github/stars/KhubaibKhan4/Alert-KMP?style=social)
 
+![Supported Platforms](https://img.shields.io/badge/platform-Android-green.svg)
+![Supported Platforms](https://img.shields.io/badge/platform-iOS-blue.svg)
+![Supported Platforms](https://img.shields.io/badge/platform-JS-yellow.svg)
+![Supported Platforms](https://img.shields.io/badge/platform-WASM-yellow.svg)
+![Supported Platforms](https://img.shields.io/badge/platform-JVM-red.svg)
+
 ## Overview
 
 Alert-KMP is a Kotlin Multiplatform (KMP) library designed to facilitate native notification displays across Android, iOS, Web, and Desktop platforms using JetBrains Compose Multiplatform. It provides a unified API for triggering notifications that seamlessly integrates into Kotlin's multiplatform ecosystem.
