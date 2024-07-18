@@ -1,12 +1,19 @@
 # Alert-KMP
 
-[![GitHub](https://img.shields.io/badge/official_project-not_official-red.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.khubaibkhan4/alert-kmp.svg?label=Maven%20Central)](https://search.maven.org/artifact/io.github.khubaibkhan4/alert-kmp)
 ![GitHub License](https://img.shields.io/github/license/KhubaibKhan4/Alert-KMP)
 ![GitHub Issues](https://img.shields.io/github/issues/KhubaibKhan4/Alert-KMP)
 ![GitHub Pull Requests](https://img.shields.io/github/issues-pr/KhubaibKhan4/Alert-KMP)
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/KhubaibKhan4/Alert-KMP)
 ![GitHub Stars](https://img.shields.io/github/stars/KhubaibKhan4/Alert-KMP?style=social)
+
+![Supported Platforms](https://img.shields.io/badge/platform-Android-green.svg)
+![Supported Platforms](https://img.shields.io/badge/platform-iOS-blue.svg)
+![Supported Platforms](https://img.shields.io/badge/platform-JS-yellow.svg)
+![Supported Platforms](https://img.shields.io/badge/platform-WASM-yellow.svg)
+![Supported Platforms](https://img.shields.io/badge/platform-JVM-red.svg)
+<img src="https://img.shields.io/liberapay/patrons/KhubaibKhanDev.svg?logo=liberapay">
+
 
 ## Overview
 
@@ -23,8 +30,52 @@ Alert-KMP is a Kotlin Multiplatform (KMP) library designed to facilitate native 
 
 You can include Alert-KMP in your project by adding the following dependency:
 
+**Version Catelog**
+### Compose Multiplatform Setup
+```
+[versions]
+alertKmp = "0.0.5"
+
+[libraries]
+alert-kmp = { module = "io.github.khubaibkhan4:alert-kmp", version.ref = "alertKmp" }
+
+```
+
+
 ```groovy
-implementation("io.github.khubaibkhan4:alert-kmp:0.0.2")
+implementation("io.github.khubaibkhan4:alert-kmp:0.0.5")
+```
+### Platform Specific
+```
+**alert-kmp-jvm**
+implementation("io.github.khubaibkhan4:alert-kmp-jvm:0.0.5")
+
+**alert-kmp-android**
+implementation("io.github.khubaibkhan4:alert-kmp-android:0.0.5")
+
+**alert-kmp-js**
+implementation("io.github.khubaibkhan4:alert-kmp-js:0.0.5")
+
+
+**alert-kmp-wasm-js**
+implementation("io.github.khubaibkhan4:alert-kmp-wasm-js:0.0.5")
+
+
+```
+
+
+```
+[versions]
+alertKmp = "0.0.5"
+
+[libraries]
+alert-kmp = { module = "io.github.khubaibkhan4:alert-kmp", version.ref = "alertKmp" }
+
+```
+
+
+```groovy
+implementation("io.github.khubaibkhan4:alert-kmp:0.0.5")
 ```
 
 ## Usage
@@ -46,6 +97,17 @@ Let's chat about potential projects, job opportunities, or any other collaborati
 
   ## 💰 You can help me by Donating
   [![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/khubaibkhan) [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/18.bscs) [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://patreon.com/MuhammadKhubaibImtiaz) [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/muhammadkhubaibimtiaz) 
+
+## Screenshots
+| <img src="https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assests/screenshots/1.png" alt="Mobile Screenshot" width="300"> |
+ ![Screenshot 2](https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assests/screenshots/2.png) 
+ ![Screenshot 3](https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assests/screenshots/3.png) 
+
+## Demo
+
+https://github.com/KhubaibKhan4/Alert-KMP/assets/98816544/f554204b-d484-49a3-b409-caa7e95c5d04
+
+
 
   ## Contribution Guidelines
 We welcome contributions to the Alert-KMP Library Project! To contribute, please follow these guidelines:
