@@ -1,5 +1,6 @@
 [versions]
 agp = "8.0.2"
+core = "1.13.1"
 kotlin = "2.0.0"
 nexus-publish = "2.0.0-rc-1"
 android-minSdk = "24"
@@ -8,6 +9,7 @@ startupRuntime = "1.1.1"
 
 
 [libraries]
+core = { module = "androidx.core:core", version.ref = "core" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 nexus-publish = { module = "io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin", version.ref = "nexus-publish" }
 startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }

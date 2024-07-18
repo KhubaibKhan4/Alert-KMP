@@ -30,16 +30,9 @@ kotlin {
         browser()
         binaries.executable()
     }
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "alert-kmp"
-            isStatic = true
-        }
-    }
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
 
     sourceSets {
         val commonMain by getting {
@@ -49,6 +42,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.startup.runtime)
+                implementation(libs.core)
             }
         }
         val iosMain by getting {
@@ -81,7 +75,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.khubaibkhan4",
         artifactId = "alert-kmp",
-        version = "0.0.4"
+        version = "0.0.5"
     )
 
     // Configure POM metadata for the published artifact
