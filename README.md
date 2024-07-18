@@ -30,35 +30,35 @@ Alert-KMP is a Kotlin Multiplatform (KMP) library designed to facilitate native 
 
 You can include Alert-KMP in your project by adding the following dependency:
 
-**Version Catelog**
 ### Compose Multiplatform Setup
-```
+
+**Version Catalog**
+```toml
 [versions]
-alertKmp = "0.0.5"
+alertKmp = "0.0.6"
 
 [libraries]
 alert-kmp = { module = "io.github.khubaibkhan4:alert-kmp", version.ref = "alertKmp" }
 
-```
-
 
 ```groovy
-implementation("io.github.khubaibkhan4:alert-kmp:0.0.5")
+implementation("io.github.khubaibkhan4:alert-kmp:0.0.6")
 ```
+
 ### Platform Specific
 ```
 **alert-kmp-jvm**
-implementation("io.github.khubaibkhan4:alert-kmp-jvm:0.0.5")
+implementation("io.github.khubaibkhan4:alert-kmp-jvm:0.0.6")
 
 **alert-kmp-android**
-implementation("io.github.khubaibkhan4:alert-kmp-android:0.0.5")
+implementation("io.github.khubaibkhan4:alert-kmp-android:0.0.6")
 
 **alert-kmp-js**
-implementation("io.github.khubaibkhan4:alert-kmp-js:0.0.5")
+implementation("io.github.khubaibkhan4:alert-kmp-js:0.0.6")
 
 
 **alert-kmp-wasm-js**
-implementation("io.github.khubaibkhan4:alert-kmp-wasm-js:0.0.5")
+implementation("io.github.khubaibkhan4:alert-kmp-wasm-js:0.0.6")
 
 
 ```
@@ -66,7 +66,7 @@ implementation("io.github.khubaibkhan4:alert-kmp-wasm-js:0.0.5")
 
 ```
 [versions]
-alertKmp = "0.0.5"
+alertKmp = "0.0.6"
 
 [libraries]
 alert-kmp = { module = "io.github.khubaibkhan4:alert-kmp", version.ref = "alertKmp" }
@@ -75,17 +75,31 @@ alert-kmp = { module = "io.github.khubaibkhan4:alert-kmp", version.ref = "alertK
 
 
 ```groovy
-implementation("io.github.khubaibkhan4:alert-kmp:0.0.5")
+implementation("io.github.khubaibkhan4:alert-kmp:0.0.6")
 ```
 
 ## Usage
 ```groovy
-import io.github.khubaibkhan4.alert.Notify
+import io.github.khubaibkhan4.alert.Notification
+import io.github.khubaibkhan4.alert.NotificationType
+import io.github.khubaibkhan4.alert.createNotification
 
 fun main() {
-    Notify("Hello, World!")
+    val notification = createNotification(NotificationType.TOAST)
+    notification.show("Hello, World!")
+
+OR 
+
+ Notify(message= "Hellow World!", duration=NotificationDuration.SHORT)
 }
 ```
+## Notification Types
+The library supports multiple notification types:
+
+- **NotificationType.TOAST** - Displays a toast message.
+- **NotificationType.ALERT** - Displays an alert dialog.
+- **NotificationType.TOP** - Displays a notification at the top of the screen.
+- **NotificationType.CUSTOM** - Displays a custom notification (implementations vary by platform).
 
 ## 🤝 Connect with Me
 
