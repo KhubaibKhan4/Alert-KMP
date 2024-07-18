@@ -39,7 +39,7 @@ alertKmp = "0.0.6"
 
 [libraries]
 alert-kmp = { module = "io.github.khubaibkhan4:alert-kmp", version.ref = "alertKmp" }
-
+```
 
 ```groovy
 implementation("io.github.khubaibkhan4:alert-kmp:0.0.6")
@@ -63,20 +63,6 @@ implementation("io.github.khubaibkhan4:alert-kmp-wasm-js:0.0.6")
 
 ```
 
-
-```
-[versions]
-alertKmp = "0.0.6"
-
-[libraries]
-alert-kmp = { module = "io.github.khubaibkhan4:alert-kmp", version.ref = "alertKmp" }
-
-```
-
-
-```groovy
-implementation("io.github.khubaibkhan4:alert-kmp:0.0.6")
-```
 
 ## Usage
 ```groovy
