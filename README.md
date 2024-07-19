@@ -106,7 +106,9 @@ Let's chat about potential projects, job opportunities, or any other collaborati
  ## Web Toast
  ![Screenshot 2024-07-19 114919](https://github.com/user-attachments/assets/617a3bc6-c129-45fb-acd2-83fb52866ce9)
  ## Web Top Toast
-![Screenshot 2024-07-19 115339](https://github.com/user-attachments/assets/dd0ba090-21d9-4566-8097-7cc6eaae252d)
+ ![Screenshot 2024-07-19 115339](https://github.com/user-attachments/assets/dd0ba090-21d9-4566-8097-7cc6eaae252d)
+ ## Web Custom 
+ ![Screenshot 2024-07-19 115753](https://github.com/user-attachments/assets/cfdc1782-8f13-4fff-bda3-dc97214f495f)
 
 
 ## Demo
