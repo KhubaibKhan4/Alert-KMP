@@ -103,6 +103,10 @@ Let's chat about potential projects, job opportunities, or any other collaborati
  ![Screenshot 2](https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assests/screenshots/2.png) 
  ![Screenshot 3](https://github.com/KhubaibKhan4/Alert-KMP/blob/master/assests/screenshots/3.png) 
 
+ ## Web Toast
+ ![Screenshot 2024-07-19 114919](https://github.com/user-attachments/assets/617a3bc6-c129-45fb-acd2-83fb52866ce9)
+
+
 ## Demo
 
 https://github.com/KhubaibKhan4/Alert-KMP/assets/98816544/f554204b-d484-49a3-b409-caa7e95c5d04
