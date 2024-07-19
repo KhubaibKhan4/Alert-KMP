@@ -40,7 +40,36 @@ private fun showNotification(message: String, duration: NotificationDuration) {
     NotificationManager("New Notification", options)
 }
 
-actual fun createNotification(type: NotificationType): Notification =when(type) {
+actual fun createNotification(type: NotificationType): Notification = when (type) {
+    NotificationType.TOAST -> object : Notification() {
+        override fun show(message: String) {
+            val toast = document.createElement("div")
+            toast.textContent = message
+            toast.setAttribute("style", """
+                position: fixed;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0, 0, 0, 0.7);
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                opacity: 0;
+                transition: opacity 0.5s ease-in-out;
+                z-index: 1000;
+            """.trimIndent())
+            document.body?.appendChild(toast)
+            window.setTimeout({
+                toast.setAttribute("style", toast.getAttribute("style") + "opacity: 1;")
+            }, 100)
+            window.setTimeout({
+                toast.setAttribute("style", toast.getAttribute("style") + "opacity: 0;")
+                window.setTimeout({
+                    document.body?.removeChild(toast)
+                }, 500)
+            }, 3000)
+        }
+    }
     NotificationType.ALERT -> object : Notification() {
         override fun show(message: String) {
             window.alert(message)
@@ -49,6 +78,8 @@ actual fun createNotification(type: NotificationType): Notification =when(type) 
     NotificationType.TOP -> object : Notification() {
         override fun show(message: String) {
             val notification = document.createElement("div")
+            val closeButton = document.createElement("span")
+
             notification.textContent = message
             notification.setAttribute("style", """
                 position: fixed;
@@ -58,13 +89,29 @@ actual fun createNotification(type: NotificationType): Notification =when(type) 
                 color: #fff;
                 padding: 10px;
                 text-align: center;
+                z-index: 1000;
             """.trimIndent())
+
+            closeButton.textContent = "✖"
+            closeButton.setAttribute("style", """
+                margin-left: 10px;
+                cursor: pointer;
+                float: right;
+            """.trimIndent())
+
+            closeButton.addEventListener("click", {
+                document.body?.removeChild(notification)
+            })
+
+            notification.appendChild(closeButton)
             document.body?.appendChild(notification)
         }
     }
     NotificationType.CUSTOM -> object : Notification() {
         override fun show(message: String) {
             val notification = document.createElement("div")
+            val closeButton = document.createElement("span")
+
             notification.textContent = message
             notification.setAttribute("style", """
                 position: fixed;
@@ -75,7 +122,21 @@ actual fun createNotification(type: NotificationType): Notification =when(type) 
                 padding: 20px;
                 border-radius: 5px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
             """.trimIndent())
+
+            closeButton.textContent = "✖"
+            closeButton.setAttribute("style", """
+                margin-left: 10px;
+                cursor: pointer;
+                float: right;
+            """.trimIndent())
+
+            closeButton.addEventListener("click", {
+                document.body?.removeChild(notification)
+            })
+
+            notification.appendChild(closeButton)
             document.body?.appendChild(notification)
         }
     }

@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
@@ -19,6 +20,18 @@ actual fun createNotification(type: NotificationType): Notification = when (type
         override fun show(message: String) {
             val context = AppContext.get()
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        }
+    }
+    NotificationType.ALERT -> object : Notification() {
+        override fun show(message: String) {
+            val context = AppContext.get()
+            AlertDialog.Builder(context)
+                .setTitle("Alert Notification")
+                .setMessage(message)
+                .setPositiveButton("OK", null)
+                .create()
+                .show()
+            Log.d("Notification", "Alert notification shown with message: $message")
         }
     }
     NotificationType.TOP -> object : Notification() {
@@ -47,17 +60,23 @@ actual fun createNotification(type: NotificationType): Notification = when (type
                 .build()
 
             notificationManager.notify(1, notification)
+            Log.d("Notification", "Top notification shown with message: $message")
         }
     }
     NotificationType.CUSTOM -> object : Notification() {
         override fun show(message: String) {
-            val context = AppContext.get()
-            val dialog = AlertDialog.Builder(context)
-                .setTitle("Custom Notification")
-                .setMessage(message)
-                .setPositiveButton("OK", null)
-                .create()
-            dialog.show()
+            val activity = AppContext.get() as? Activity
+            if (activity != null) {
+                val dialog = AlertDialog.Builder(activity)
+                    .setTitle("Custom Notification")
+                    .setMessage(message)
+                    .setPositiveButton("OK", null)
+                    .create()
+                dialog.show()
+                Log.d("Notification", "Custom notification shown with message: $message")
+            } else {
+                Log.e("CustomNotification", "Context is not an Activity")
+            }
         }
     }
     else -> throw IllegalArgumentException("Unsupported notification type")
