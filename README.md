@@ -109,6 +109,8 @@ Let's chat about potential projects, job opportunities, or any other collaborati
  ![Screenshot 2024-07-19 115339](https://github.com/user-attachments/assets/dd0ba090-21d9-4566-8097-7cc6eaae252d)
  ## Web Custom 
  ![Screenshot 2024-07-19 115753](https://github.com/user-attachments/assets/cfdc1782-8f13-4fff-bda3-dc97214f495f)
+ ## Desktop
+ ![Screenshot 2024-07-19 120052](https://github.com/user-attachments/assets/d3a58b21-75c4-4f6d-ad92-d86be8fa5429)
 
 
 ## Demo
