@@ -35,30 +35,30 @@ You can include Alert-KMP in your project by adding the following dependency:
 **Version Catalog**
 ```toml
 [versions]
-alertKmp = "0.0.6"
+alertKmp = "0.0.7"
 
 [libraries]
 alert-kmp = { module = "io.github.khubaibkhan4:alert-kmp", version.ref = "alertKmp" }
 ```
 
 ```groovy
-implementation("io.github.khubaibkhan4:alert-kmp:0.0.6")
+implementation("io.github.khubaibkhan4:alert-kmp:0.0.7")
 ```
 
 ### Platform Specific
 ```
 **alert-kmp-jvm**
-implementation("io.github.khubaibkhan4:alert-kmp-jvm:0.0.6")
+implementation("io.github.khubaibkhan4:alert-kmp-jvm:0.0.7")
 
 **alert-kmp-android**
-implementation("io.github.khubaibkhan4:alert-kmp-android:0.0.6")
+implementation("io.github.khubaibkhan4:alert-kmp-android:0.0.7")
 
 **alert-kmp-js**
-implementation("io.github.khubaibkhan4:alert-kmp-js:0.0.6")
+implementation("io.github.khubaibkhan4:alert-kmp-js:0.0.7")
 
 
 **alert-kmp-wasm-js**
-implementation("io.github.khubaibkhan4:alert-kmp-wasm-js:0.0.6")
+implementation("io.github.khubaibkhan4:alert-kmp-wasm-js:0.0.7")
 
 
 ```
