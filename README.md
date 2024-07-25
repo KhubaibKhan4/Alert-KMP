@@ -87,6 +87,9 @@ The library supports multiple notification types:
 - **NotificationType.TOP** - Displays a notification at the top of the screen.
 - **NotificationType.CUSTOM** - Displays a custom notification (implementations vary by platform).
 
+## Future Plan's 
+- System Level Notificationa.
+
 ## 🤝 Connect with Me
 
 Let's chat about potential projects, job opportunities, or any other collaboration! Feel free to connect with me through the following channels:
