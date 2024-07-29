@@ -26,6 +26,11 @@ Alert-KMP is a Kotlin Multiplatform (KMP) library designed to facilitate native 
 - **Customizable Notifications:** Easily customize notification content, icons, actions, and behaviors to suit application needs.
 - **Event Handling:** Provides callbacks and event listeners for notification actions and dismissal.
 
+## Plans
+
+- **FCM Implementation**
+- **Schedule Native Notifications**
+
 ## Installation
 
 You can include Alert-KMP in your project by adding the following dependency:
