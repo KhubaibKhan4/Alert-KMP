@@ -1,14 +1,20 @@
 import platform.Foundation.NSLog
 import platform.Foundation.NSTimer
-import platform.UIKit.*
-import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIAlertAction
+import platform.UIKit.UIAlertActionStyleDefault
 import platform.UIKit.UIAlertController
+import platform.UIKit.UIAlertControllerStyle
+import platform.UIKit.UIAlertControllerStyleActionSheet
+import platform.UIKit.UIAlertControllerStyleAlert
 import platform.UIKit.UIApplication
 import platform.UIKit.UIDevice
-import platform.UIKit.UIView
-import platform.UserNotifications.*
-import platform.darwin.*
+import platform.UserNotifications.UNAuthorizationOptionAlert
+import platform.UserNotifications.UNAuthorizationOptionSound
+import platform.UserNotifications.UNMutableNotificationContent
+import platform.UserNotifications.UNNotificationRequest
+import platform.UserNotifications.UNNotificationSound
+import platform.UserNotifications.UNTimeIntervalNotificationTrigger
+import platform.UserNotifications.UNUserNotificationCenter
 
 actual fun Notify(message: String, duration: NotificationDuration) {
     val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController?.modalViewController

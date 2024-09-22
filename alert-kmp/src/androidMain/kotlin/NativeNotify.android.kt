@@ -6,7 +6,6 @@ import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import android.util.Log
-import android.view.Gravity
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 

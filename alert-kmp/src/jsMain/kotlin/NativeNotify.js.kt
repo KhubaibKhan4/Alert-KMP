@@ -3,9 +3,9 @@ import kotlinx.browser.window
 import org.w3c.notifications.DEFAULT
 import org.w3c.notifications.DENIED
 import org.w3c.notifications.GRANTED
-import org.w3c.notifications.Notification as NotificationManager
 import org.w3c.notifications.NotificationOptions
 import org.w3c.notifications.NotificationPermission
+import org.w3c.notifications.Notification as NotificationManager
 
 actual fun Notify(message: String, duration: NotificationDuration) {
     window.alert(message)

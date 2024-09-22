@@ -65,7 +65,7 @@ kotlin {
 }
 
 android {
-    namespace = "io.github.khubaibkhan4.alert.kmp"
+    namespace = "org.jetbrains.kotlinx.multiplatform.library.template"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -75,7 +75,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.khubaibkhan4",
         artifactId = "alert-kmp",
-        version = "1.0.1"
+        version = "1.0.3"
     )
 
     // Configure POM metadata for the published artifact
