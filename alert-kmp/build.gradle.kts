@@ -75,7 +75,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.khubaibkhan4",
         artifactId = "alert-kmp",
-        version = "0.0.7"
+        version = "0.0.9"
     )
 
     // Configure POM metadata for the published artifact
