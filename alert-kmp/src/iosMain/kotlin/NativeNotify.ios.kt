@@ -1,3 +1,5 @@
+import platform.Foundation.NSLog
+import platform.Foundation.NSTimer
 import platform.UIKit.*
 import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIAlertAction
@@ -36,10 +38,10 @@ actual fun createNotification(type: NotificationType): Notification = when (type
             val alertController = UIAlertController.alertControllerWithTitle(
                 title = UIDevice.currentDevice.systemName,
                 message = message,
-                preferredStyle = UIAlertControllerStyle.Alert
+                preferredStyle = UIAlertControllerStyleAlert
             )
             alertController.addAction(
-                UIAlertAction.actionWithTitle("OK", UIAlertActionStyle.Default, null)
+                UIAlertAction.actionWithTitle("OK", UIAlertActionStyleDefault, null)
             )
             viewController?.presentViewController(alertController, animated = true, completion = null)
         }
@@ -53,9 +55,9 @@ actual fun createNotification(type: NotificationType): Notification = when (type
             ) { granted, error ->
                 if (granted) {
                     val content = UNMutableNotificationContent().apply {
-                        title = "Top Notification"
-                        body = message
-                        sound = UNNotificationSound.defaultSound()
+                        setTitle("Top Notification")
+                        setBody(message)
+                        setSound(UNNotificationSound.defaultSound())
                     }
 
                     val trigger = UNTimeIntervalNotificationTrigger.triggerWithTimeInterval(1.0, false)
@@ -83,10 +85,10 @@ actual fun createNotification(type: NotificationType): Notification = when (type
             val customAlertController = UIAlertController.alertControllerWithTitle(
                 title = "Custom Notification",
                 message = message,
-                preferredStyle = UIAlertControllerStyle.ActionSheet
+                preferredStyle = UIAlertControllerStyleActionSheet
             )
             customAlertController.addAction(
-                UIAlertAction.actionWithTitle("OK", UIAlertActionStyle.Default, null)
+                UIAlertAction.actionWithTitle("OK", UIAlertActionStyleDefault, null)
             )
             viewController?.presentViewController(customAlertController, animated = true, completion = null)
         }
