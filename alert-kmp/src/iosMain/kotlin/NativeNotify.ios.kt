@@ -15,28 +15,38 @@ import platform.UserNotifications.UNNotificationRequest
 import platform.UserNotifications.UNNotificationSound
 import platform.UserNotifications.UNTimeIntervalNotificationTrigger
 import platform.UserNotifications.UNUserNotificationCenter
+import platform.darwin.dispatch_async
+import platform.darwin.dispatch_get_main_queue
 
 actual fun Notify(message: String, duration: NotificationDuration) {
-    val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController?.modalViewController
-    val alertController = UIAlertController.alertControllerWithTitle(
-        title = UIDevice.currentDevice.systemName,
-        message = message,
-        preferredStyle = UIAlertControllerStyle.MAX_VALUE
-    )
-    alertController.addAction(
-        UIAlertAction.actionWithTitle(
-            "OK",
-            style = UIAlertControllerStyle.MAX_VALUE,
-            handler = null
+    val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
+    if (viewController != null) {
+        val alertController = UIAlertController.alertControllerWithTitle(
+            title = UIDevice.currentDevice.systemName,
+            message = message,
+            preferredStyle = UIAlertControllerStyleAlert
         )
-    )
-    viewController?.presentViewController(alertController, animated = true, completion = {
-        val delay = if (duration == NotificationDuration.LONG) 3.0 else 1.5
-        NSTimer.scheduledTimerWithTimeInterval(delay, repeats = false) {
-            alertController.dismissViewControllerAnimated(true, completion = null)
+        alertController.addAction(
+            UIAlertAction.actionWithTitle(
+                "OK",
+                style = UIAlertActionStyleDefault,
+                handler = null
+            )
+        )
+
+        dispatch_async(dispatch_get_main_queue()) {
+            viewController.presentViewController(alertController, animated = true, completion = {
+                val delay = if (duration == NotificationDuration.LONG) 3.0 else 1.5
+                NSTimer.scheduledTimerWithTimeInterval(delay, repeats = false) {
+                    alertController.dismissViewControllerAnimated(true, completion = null)
+                }
+            })
         }
-    })
+    } else {
+        NSLog("Error: rootViewController is null")
+    }
 }
+
 actual fun createNotification(type: NotificationType): Notification = when (type) {
     NotificationType.ALERT -> object : Notification() {
         override fun show(message: String) {
