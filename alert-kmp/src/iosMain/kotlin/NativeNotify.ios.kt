@@ -3,7 +3,6 @@ import platform.Foundation.NSTimer
 import platform.UIKit.UIAlertAction
 import platform.UIKit.UIAlertActionStyleDefault
 import platform.UIKit.UIAlertController
-import platform.UIKit.UIAlertControllerStyle
 import platform.UIKit.UIAlertControllerStyleActionSheet
 import platform.UIKit.UIAlertControllerStyleAlert
 import platform.UIKit.UIApplication
@@ -70,23 +69,24 @@ actual fun createNotification(type: NotificationType): Notification = when (type
                 options = UNAuthorizationOptionAlert or UNAuthorizationOptionSound
             ) { granted, error ->
                 if (granted) {
-                    val content = UNMutableNotificationContent().apply {
-                        setTitle("Top Notification")
-                        setBody(message)
-                        setSound(UNNotificationSound.defaultSound())
-                    }
+                    dispatch_async(dispatch_get_main_queue()) {
+                        val content = UNMutableNotificationContent().apply {
+                            setTitle("Top Notification")
+                            setBody(message)
+                            setSound(UNNotificationSound.defaultSound())
+                        }
 
-                    val trigger = UNTimeIntervalNotificationTrigger.triggerWithTimeInterval(1.0, false)
+                        val trigger = UNTimeIntervalNotificationTrigger.triggerWithTimeInterval(1.0, false)
+                        val request = UNNotificationRequest.requestWithIdentifier(
+                            "topNotification",
+                            content,
+                            trigger
+                        )
 
-                    val request = UNNotificationRequest.requestWithIdentifier(
-                        "topNotification",
-                        content,
-                        trigger
-                    )
-
-                    center.addNotificationRequest(request) { error ->
-                        error?.let {
-                            NSLog("Error scheduling notification: ${it.localizedDescription}")
+                        center.addNotificationRequest(request) { error ->
+                            error?.let {
+                                NSLog("Error scheduling notification: ${it.localizedDescription}")
+                            }
                         }
                     }
                 } else {
