@@ -5,7 +5,7 @@ kotlin = "2.0.0"
 nexus-publish = "2.0.0-rc-1"
 android-minSdk = "24"
 android-compileSdk = "33"
-startupRuntime = "1.1.1"
+startupRuntime = "1.2.0"
 
 
 [libraries]
