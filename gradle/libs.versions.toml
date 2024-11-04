@@ -2,7 +2,7 @@
 agp = "8.0.2"
 core = "1.15.0"
 kotlin = "2.0.20"
-nexus-publish = "2.0.0-rc-1"
+nexus-publish = "2.0.0"
 android-minSdk = "24"
 android-compileSdk = "33"
 startupRuntime = "1.2.0"
