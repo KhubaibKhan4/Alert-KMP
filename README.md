@@ -120,6 +120,12 @@ Let's chat about potential projects, job opportunities, or any other collaborati
  ## Desktop
  ![Screenshot 2024-07-19 120052](https://github.com/user-attachments/assets/d3a58b21-75c4-4f6d-ad92-d86be8fa5429)
 
+ ## iOS Alerts
+https://github.com/user-attachments/assets/484e976a-0b8d-47fa-84d6-53b3d4733aaa
+
+
+ 
+
 
 ## Demo
 
