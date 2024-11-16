@@ -131,6 +131,15 @@ https://github.com/user-attachments/assets/484e976a-0b8d-47fa-84d6-53b3d4733aaa
 
 https://github.com/KhubaibKhan4/Alert-KMP/assets/98816544/f554204b-d484-49a3-b409-caa7e95c5d04
 
+## Star History
+
+<a href="https://star-history.com/#KhubaibKhan4/Alert-KMP&Timeline">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=KhubaibKhan4/Alert-KMP&type=Timeline&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=KhubaibKhan4/Alert-KMP&type=Timeline" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=KhubaibKhan4/Alert-KMP&type=Timeline" />
+ </picture>
+</a>
 
 
   ## Contribution Guidelines
