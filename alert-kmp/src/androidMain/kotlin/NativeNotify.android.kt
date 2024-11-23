@@ -11,18 +11,20 @@ import androidx.core.app.NotificationCompat
 
 actual fun Notify(message: String, duration: NotificationDuration) {
     val context = AppContext.get()
-    val length = if (duration == NotificationDuration.LONG) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
-    Toast.makeText(context, message, length).show()
+    val toastDuration = if (duration == NotificationDuration.LONG) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
+    Toast.makeText(context, message, toastDuration).show()
 }
+
 actual fun createNotification(type: NotificationType): Notification = when (type) {
     NotificationType.TOAST -> object : Notification() {
-        override fun show(message: String) {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
             val context = AppContext.get()
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         }
     }
     NotificationType.ALERT -> object : Notification() {
-        override fun show(message: String) {
+
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
             val context = AppContext.get()
             AlertDialog.Builder(context)
                 .setTitle("Alert Notification")
@@ -34,7 +36,7 @@ actual fun createNotification(type: NotificationType): Notification = when (type
         }
     }
     NotificationType.TOP -> object : Notification() {
-        override fun show(message: String) {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
             val context = AppContext.get()
             val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -62,12 +64,12 @@ actual fun createNotification(type: NotificationType): Notification = when (type
             Log.d("Notification", "Top notification shown with message: $message")
         }
     }
-    NotificationType.CUSTOM -> object : Notification() {
-        override fun show(message: String) {
+    is NotificationType.CUSTOM -> object : Notification() {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
             val activity = AppContext.get() as? Activity
             if (activity != null) {
                 val dialog = AlertDialog.Builder(activity)
-                    .setTitle("Custom Notification")
+                    .setTitle(type.title)
                     .setMessage(message)
                     .setPositiveButton("OK", null)
                     .create()
@@ -75,6 +77,22 @@ actual fun createNotification(type: NotificationType): Notification = when (type
                 Log.d("Notification", "Custom notification shown with message: $message")
             } else {
                 Log.e("CustomNotification", "Context is not an Activity")
+            }
+        }
+    }
+    is NotificationType.MENU_CONTEXT -> object : Notification() {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
+            val activity = AppContext.get() as? Activity
+            if (activity != null) {
+                val builder = AlertDialog.Builder(activity)
+                builder.setTitle(title ?: "Context Menu Notification")
+                builder.setItems(type.actions.map { it.first }.toTypedArray()) { _, which ->
+                    type.actions[which].second.invoke()
+                }
+                builder.create().show()
+                Log.d("Notification", "MenuContext notification shown with options")
+            } else {
+                Log.e("MenuContextNotification", "Context is not an Activity")
             }
         }
     }

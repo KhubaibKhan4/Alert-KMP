@@ -42,7 +42,7 @@ private fun showNotification(message: String, duration: NotificationDuration) {
 
 actual fun createNotification(type: NotificationType): Notification = when (type) {
     NotificationType.TOAST -> object : Notification() {
-        override fun show(message: String) {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
             val toast = document.createElement("div")
             toast.textContent = message
             toast.setAttribute("style", """
@@ -71,12 +71,12 @@ actual fun createNotification(type: NotificationType): Notification = when (type
         }
     }
     NotificationType.ALERT -> object : Notification() {
-        override fun show(message: String) {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
             window.alert(message)
         }
     }
     NotificationType.TOP -> object : Notification() {
-        override fun show(message: String) {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
             val notification = document.createElement("div")
             val closeButton = document.createElement("span")
 
@@ -107,8 +107,8 @@ actual fun createNotification(type: NotificationType): Notification = when (type
             document.body?.appendChild(notification)
         }
     }
-    NotificationType.CUSTOM -> object : Notification() {
-        override fun show(message: String) {
+    is NotificationType.CUSTOM -> object : Notification() {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
             val notification = document.createElement("div")
             val closeButton = document.createElement("span")
 

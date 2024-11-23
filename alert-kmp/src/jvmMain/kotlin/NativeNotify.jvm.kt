@@ -35,17 +35,17 @@ actual fun Notify(message: String, duration: NotificationDuration) {
 
 actual fun createNotification(type: NotificationType): Notification = when (type) {
     NotificationType.TOAST -> object : Notification() {
-        override fun show(message: String) {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
             JOptionPane.showMessageDialog(
                 null,
                 message,
-                "Desktop Notification",
+                title,
                 JOptionPane.INFORMATION_MESSAGE
             )
         }
     }
     NotificationType.TOP -> object : Notification() {
-        override fun show(message: String) {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
             val frame = JFrame()
             frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
             val label = JLabel(message)
@@ -55,16 +55,16 @@ actual fun createNotification(type: NotificationType): Notification = when (type
             frame.isVisible = true
         }
     }
-    NotificationType.CUSTOM -> object : Notification() {
-        override fun show(message: String) {
-            val frame = JFrame("Custom Notification")
-            frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-            val panel = JPanel()
-            panel.add(JLabel(message))
-            frame.contentPane.add(panel)
-            frame.setSize(300, 100)
-            frame.isVisible = true
-        }
-    }
+     is NotificationType.CUSTOM -> object : Notification() {
+         override fun show(message: String, title: String?, duration: NotificationDuration) {
+             val frame = JFrame(title)
+             frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+             val panel = JPanel()
+             panel.add(JLabel(message))
+             frame.contentPane.add(panel)
+             frame.setSize(300, 100)
+             frame.isVisible = true
+         }
+     }
     else -> throw IllegalArgumentException("Unsupported notification type")
 }

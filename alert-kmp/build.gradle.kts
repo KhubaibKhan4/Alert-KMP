@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     id("com.vanniktech.maven.publish") version "0.30.0"
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 kotlin {
@@ -37,6 +38,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
             }
         }
         val androidMain by getting {
@@ -75,7 +77,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.khubaibkhan4",
         artifactId = "alert-kmp",
-        version = "1.0.7"
+        version = "1.0.8"
     )
 
     // Configure POM metadata for the published artifact
