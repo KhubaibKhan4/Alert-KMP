@@ -13,6 +13,7 @@
 ![Supported Platforms](https://img.shields.io/badge/platform-WASM-yellow.svg)
 ![Supported Platforms](https://img.shields.io/badge/platform-JVM-red.svg)
 <img src="https://img.shields.io/liberapay/patrons/KhubaibKhanDev.svg?logo=liberapay">
+[![Android CI](https://github.com/KhubaibKhan4/Alert-KMP/actions/workflows/android.yml/badge.svg)](https://github.com/KhubaibKhan4/Alert-KMP/actions/workflows/android.yml)
 
 
 ## Overview
