@@ -122,10 +122,7 @@ Let's chat about potential projects, job opportunities, or any other collaborati
 
  ## iOS Alerts
 https://github.com/user-attachments/assets/484e976a-0b8d-47fa-84d6-53b3d4733aaa
-
-
- 
-
+https://github.com/user-attachments/assets/bd642ecb-55e1-4441-b3fe-a44eb6b84c2d
 
 ## Demo
 
