@@ -2,6 +2,7 @@ import kotlinx.cinterop.ExperimentalForeignApi
 import platform.CoreGraphics.CGRectMake
 import platform.Foundation.NSLog
 import platform.Foundation.NSTimer
+import platform.Foundation.NSUUID
 import platform.UIKit.NSTextAlignmentCenter
 import platform.UIKit.UIAlertAction
 import platform.UIKit.UIAlertActionStyleCancel
@@ -18,6 +19,13 @@ import platform.UIKit.UILabel
 import platform.UIKit.UIView
 import platform.UIKit.UIViewAnimationOptionCurveEaseInOut
 import platform.UIKit.UIViewContentMode
+import platform.UserNotifications.UNAuthorizationOptionAlert
+import platform.UserNotifications.UNAuthorizationOptionSound
+import platform.UserNotifications.UNMutableNotificationContent
+import platform.UserNotifications.UNNotificationRequest
+import platform.UserNotifications.UNNotificationSound
+import platform.UserNotifications.UNTimeIntervalNotificationTrigger
+import platform.UserNotifications.UNUserNotificationCenter
 import platform.darwin.dispatch_async
 import platform.darwin.dispatch_get_main_queue
 
@@ -52,6 +60,47 @@ actual fun Notify(message: String, duration: NotificationDuration) {
 
 @OptIn(ExperimentalForeignApi::class)
 actual fun createNotification(type: NotificationType): Notification = when (type) {
+    NotificationType.TOP -> object: Notification(){
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
+            UNUserNotificationCenter.currentNotificationCenter().requestAuthorizationWithOptions(
+                options = UNAuthorizationOptionAlert or UNAuthorizationOptionSound
+            ) { granted, error ->
+                if (granted) {
+                    println("Permission granted")
+
+                    val content = UNMutableNotificationContent().apply {
+                        this.setTitle(title ?: "Notification")
+                        this.setBody(message)
+                        this.setSound(UNNotificationSound.defaultSound)
+                    }
+
+                    val trigger = UNTimeIntervalNotificationTrigger.triggerWithTimeInterval(
+                        timeInterval = 5.0,
+                        repeats = false
+                    )
+
+                    val request = UNNotificationRequest.requestWithIdentifier(
+                        identifier = NSUUID().UUIDString,
+                        content = content,
+                        trigger = trigger
+                    )
+
+
+                    UNUserNotificationCenter.currentNotificationCenter().addNotificationRequest(
+                        request
+                    ) { error ->
+                        error?.let {
+                            println("Error scheduling notification: ${it.localizedDescription}")
+                        } ?: println("Notification scheduled")
+                    }
+                } else {
+                    error?.let {
+                        println("Permission error: ${it.localizedDescription}")
+                    } ?: println("Permission denied")
+                }
+            }
+        }
+    }
     NotificationType.ALERT -> object : Notification() {
         override fun show(message: String, title: String?, duration: NotificationDuration) {
             val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
