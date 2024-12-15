@@ -26,6 +26,7 @@ Alert-KMP is a Kotlin Multiplatform (KMP) library designed to facilitate native 
 - **Compose Multiplatform Integration:** Seamlessly integrates with JetBrains Compose Multiplatform UI framework.
 - **Customizable Notifications:** Easily customize notification content, icons, actions, and behaviors to suit application needs.
 - **Event Handling:** Provides callbacks and event listeners for notification actions and dismissal.
+- **Local Notifications Support**
 
 ## Plans
 
