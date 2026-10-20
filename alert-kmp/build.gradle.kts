@@ -20,8 +20,9 @@ kotlin {
         compilerOptions { jvmTarget = JvmTarget.JVM_1_8 }
     }
     @OptIn(ExperimentalWasmDsl::class)
-    wasmJs { browser() }
-    js { browser() }
+    // No browser tests: this also keeps karma and its old dependencies out of kotlin-js-store.
+    wasmJs { browser { testTask { enabled = false } } }
+    js { browser { testTask { enabled = false } } }
     iosX64()
     iosArm64()
     iosSimulatorArm64()
