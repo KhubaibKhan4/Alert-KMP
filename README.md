@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/banner.png" alt="Alert-KMP: native alerts, toasts, notifications and menus for Kotlin and Compose Multiplatform" width="100%">
+</p>
+
 # Alert-KMP
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.khubaibkhan4/alert-kmp.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.khubaibkhan4/alert-kmp)
@@ -19,15 +23,6 @@ Android, iOS, desktop and the web.**
 ```kotlin
 createNotification(NotificationType.ALERT).show("Your order is on its way", title = "Order placed")
 ```
-
-<table>
-  <tr>
-    <td align="center"><img src="docs/screenshots/android-alert.png" width="200" alt="Android alert"><br><sub>Android: alert</sub></td>
-    <td align="center"><img src="docs/screenshots/android-top.png" width="200" alt="Android system notification"><br><sub>Android: top</sub></td>
-    <td align="center"><img src="docs/screenshots/ios-alert.png" width="200" alt="iOS alert"><br><sub>iOS: alert</sub></td>
-    <td align="center"><img src="docs/screenshots/ios-menu.png" width="200" alt="iOS menu"><br><sub>iOS: menu</sub></td>
-  </tr>
-</table>
 
 ## Installation
 
