@@ -39,7 +39,7 @@ actual fun createNotification(type: NotificationType): Notification = when (type
             JOptionPane.showMessageDialog(
                 null,
                 message,
-                title,
+                title ?: "Notification",
                 JOptionPane.INFORMATION_MESSAGE
             )
         }
@@ -47,7 +47,7 @@ actual fun createNotification(type: NotificationType): Notification = when (type
     NotificationType.TOP -> object : Notification() {
         override fun show(message: String, title: String?, duration: NotificationDuration) {
             val frame = JFrame()
-            frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+            frame.defaultCloseOperation = JFrame.DISPOSE_ON_CLOSE
             val label = JLabel(message)
             label.horizontalAlignment = SwingConstants.CENTER
             frame.add(label, BorderLayout.NORTH)
@@ -58,7 +58,7 @@ actual fun createNotification(type: NotificationType): Notification = when (type
      is NotificationType.CUSTOM -> object : Notification() {
          override fun show(message: String, title: String?, duration: NotificationDuration) {
              val frame = JFrame(title)
-             frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+             frame.defaultCloseOperation = JFrame.DISPOSE_ON_CLOSE
              val panel = JPanel()
              panel.add(JLabel(message))
              frame.contentPane.add(panel)
@@ -66,5 +66,19 @@ actual fun createNotification(type: NotificationType): Notification = when (type
              frame.isVisible = true
          }
      }
-    else -> throw IllegalArgumentException("Unsupported notification type")
+    NotificationType.ALERT, is NotificationType.ICON_ALERT -> object : Notification() {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
+            JOptionPane.showMessageDialog(null, message, title ?: "Alert", JOptionPane.INFORMATION_MESSAGE)
+        }
+    }
+    is NotificationType.MENU_CONTEXT -> object : Notification() {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
+            val labels = type.actions.map { it.first }.toTypedArray<Any>()
+            val choice = JOptionPane.showOptionDialog(
+                null, message, title ?: "Choose an Action", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.PLAIN_MESSAGE, null, labels, null
+            )
+            if (choice >= 0) type.actions[choice].second.invoke()
+        }
+    }
 }
