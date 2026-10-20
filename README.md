@@ -42,50 +42,65 @@ You can include Alert-KMP in your project by adding the following dependency:
 **Version Catalog**
 ```toml
 [versions]
-alertKmp = "2.0.0"
+alertKmp = "2.1.0"
 
 [libraries]
 alert-kmp = { module = "io.github.khubaibkhan4:alert-kmp", version.ref = "alertKmp" }
 ```
 
 ```groovy
-implementation("io.github.khubaibkhan4:alert-kmp:2.0.0")
+implementation("io.github.khubaibkhan4:alert-kmp:2.1.0")
 ```
 
 ### Platform Specific
 ```
 **alert-kmp-jvm**
-implementation("io.github.khubaibkhan4:alert-kmp-jvm:2.0.0")
+implementation("io.github.khubaibkhan4:alert-kmp-jvm:2.1.0")
 
 **alert-kmp-android**
-implementation("io.github.khubaibkhan4:alert-kmp-android:2.0.0")
+implementation("io.github.khubaibkhan4:alert-kmp-android:2.1.0")
 
 **alert-kmp-js**
-implementation("io.github.khubaibkhan4:alert-kmp-js:2.0.0")
+implementation("io.github.khubaibkhan4:alert-kmp-js:2.1.0")
 
 
 **alert-kmp-wasm-js**
-implementation("io.github.khubaibkhan4:alert-kmp-wasm-js:2.0.0")
+implementation("io.github.khubaibkhan4:alert-kmp-wasm-js:2.1.0")
 
 
 ```
 
 
 ## Usage
-```groovy
-import io.github.khubaibkhan4.alert.Notification
-import io.github.khubaibkhan4.alert.NotificationType
-import io.github.khubaibkhan4.alert.createNotification
+```kotlin
+import NotificationType
+import createNotification
+import Notify
 
-fun main() {
-    val notification = createNotification(NotificationType.TOAST)
-    notification.show("Hello, World!")
+val notification = createNotification(NotificationType.ALERT)
+notification.show("Hello, World!", title = "Alert-KMP")
 
-OR 
-
- Notify(message= "Hellow World!", duration=NotificationDuration.SHORT)
-}
+// or
+Notify(message = "Hello, World!", duration = NotificationDuration.SHORT)
 ```
+
+On Android, dialogs (`ALERT`, `ICON_ALERT`, `CUSTOM`, `MENU_CONTEXT`) are shown on the Activity in front of the
+user; with none in front (the app is in the background), the message is shown as a toast instead. `show()` can be
+called from any thread. `TOP` posts a system notification: declare
+`<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />` and ask for it on Android 13 and newer.
+If notifications are off, `TOP` opens the app's notification settings.
+
+## Demo app
+
+[`sample`](sample) shows every notification type on Android, iOS, desktop and the web:
+
+```bash
+./gradlew :sample:androidApp:installDebug          # Android
+./gradlew :sample:shared:run                       # Desktop
+./gradlew :sample:shared:wasmJsBrowserDevelopmentRun  # Web
+open sample/iosApp/iosApp.xcodeproj                # iOS: run the iosApp scheme
+```
+
 ## Notification Types
 The library supports multiple notification types:
 
@@ -93,6 +108,21 @@ The library supports multiple notification types:
 - **NotificationType.ALERT** - Displays an alert dialog.
 - **NotificationType.TOP** - Displays a notification at the top of the screen.
 - **NotificationType.CUSTOM** - Displays a custom notification (implementations vary by platform).
+- **NotificationType.ICON_ALERT** - Displays an alert with an icon (a drawable on Android, an image on iOS).
+- **NotificationType.MENU_CONTEXT** - Displays a list of actions to choose from.
+
+Every type works on every platform; where a platform has no direct equivalent, the closest native UI is used.
+
+## What's new in 2.1.0
+
+- Android: alerts no longer crash with `BadTokenException` (#14). Dialogs use the Activity in front, and every
+  notification can be shown from any thread.
+- Android: opening the notification settings no longer crashes (#10).
+- Web (Wasm): no more crash with Kotlin 2.2 and newer (#13); toasts no longer need a `showToast` JavaScript function.
+- iOS: alerts show in scene-based apps (Compose Multiplatform, SwiftUI).
+- Desktop: closing a `TOP` or `CUSTOM` window no longer quits the app.
+- No more `IllegalArgumentException("Unsupported notification type")`: every type works on every platform.
+- A demo app (#11). Built with Kotlin 2.4.20; usable from apps on Kotlin 2.2 and newer.
 
 ## Future Plan's 
 - System Level Notificationa.

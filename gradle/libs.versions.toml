@@ -1,19 +1,31 @@
 [versions]
-agp = "8.0.2"
-core = "1.15.0"
-kotlin = "2.0.21"
-nexus-publish = "2.0.0"
+kotlin = "2.4.20"
+agp = "9.1.1"
+compose = "1.12.1"
+androidx-core = "1.15.0"
+androidx-startup = "1.2.0"
+androidx-activity = "1.10.1"
+kotlinx-serialization = "1.7.3"
+kotlinx-browser = "0.5.0"
+maven-publish = "0.37.0"
 android-minSdk = "24"
-android-compileSdk = "33"
-startupRuntime = "1.2.0"
-
+android-compileSdk = "35"
+# The demo app uses current Compose, which needs a newer SDK than the library does.
+sample-compileSdk = "37"
+sample-targetSdk = "35"
 
 [libraries]
-core = { module = "androidx.core:core", version.ref = "core" }
-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-nexus-publish = { module = "io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin", version.ref = "nexus-publish" }
-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }
+androidx-core = { module = "androidx.core:core", version.ref = "androidx-core" }
+androidx-startup = { module = "androidx.startup:startup-runtime", version.ref = "androidx-startup" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+kotlinx-browser = { module = "org.jetbrains.kotlinx:kotlinx-browser", version.ref = "kotlinx-browser" }
 
 [plugins]
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
-kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-kmp-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }

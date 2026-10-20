@@ -1,124 +1,81 @@
-import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
-    id("com.vanniktech.maven.publish") version "0.30.0"
-    kotlin("plugin.serialization") version "2.0.21"
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.android.kmp.library)
+    alias(libs.plugins.maven.publish)
 }
 
 kotlin {
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    targetHierarchy.default()
-    jvm()
-    androidTarget {
-        publishLibraryVariants("release")
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
-        publishLibraryVariants("release", "debug")
+    android {
+        namespace = "io.github.khubaibkhan4.alert.kmp"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        compilerOptions { jvmTarget = JvmTarget.JVM_1_8 }
+    }
+    jvm {
+        compilerOptions { jvmTarget = JvmTarget.JVM_1_8 }
     }
     @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
-        browser()
-        binaries.executable()
-    }
-    js {
-        browser()
-        binaries.executable()
-    }
+    wasmJs { browser() }
+    js { browser() }
     iosX64()
     iosArm64()
     iosSimulatorArm64()
 
+    compilerOptions {
+        // Usable from apps on Kotlin 2.2 and newer.
+        apiVersion = KotlinVersion.KOTLIN_2_2
+        languageVersion = KotlinVersion.KOTLIN_2_2
+    }
+
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
-            }
+        commonMain.dependencies {
+            implementation(libs.kotlinx.serialization.json)
         }
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.startup.runtime)
-                implementation(libs.core)
-            }
+        androidMain.dependencies {
+            implementation(libs.androidx.startup)
+            implementation(libs.androidx.core)
         }
-        val iosMain by getting {
-            dependencies {
-            }
-        }
-        val jvmMain by getting {
-            dependencies {
-            }
-        }
-        val jsMain by getting {
-            dependencies {
-            }
-        }
-        val wasmJsMain by getting {
-            dependencies {
-            }
+        // kotlinx.browser left the Kotlin/Wasm standard library in Kotlin 2.2.
+        wasmJsMain.dependencies {
+            implementation(libs.kotlinx.browser)
         }
     }
 }
 
-android {
-    namespace = "io.github.khubaibkhan4.alert.kmp"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-    }
-}
+/*
+ * Publishing: ./gradlew :alert-kmp:publishToMavenCentral, then release the deployment on central.sonatype.com.
+ * Credentials (mavenCentralUsername / mavenCentralPassword) and signing (signing.gnupg.keyName, or
+ * signingInMemoryKey / signingInMemoryKeyPassword) go in ~/.gradle/gradle.properties or CI secrets, never here.
+ */
 mavenPublishing {
-    coordinates(
-        groupId = "io.github.khubaibkhan4",
-        artifactId = "alert-kmp",
-        version = "2.0.0"
-    )
-
-    // Configure POM metadata for the published artifact
+    publishToMavenCentral(automaticRelease = false)
+    if (gradle.startParameter.taskNames.any { "MavenCentral" in it }) signAllPublications()
+    coordinates("io.github.khubaibkhan4", "alert-kmp", "2.1.0")
     pom {
-        name.set("Alert-KMP")
-        description.set("Compose & Kotlin Multiplatform Library that Help You to Show Native Notifications on Android, iOS, Web & Desktop.")
-        inceptionYear.set("2024")
-        url.set("https://github.com/KhubaibKhan4/Alert-KMP")
-
+        name = "Alert-KMP"
+        description = "Compose & Kotlin Multiplatform Library that Help You to Show Native Notifications on Android, iOS, Web & Desktop."
+        inceptionYear = "2024"
+        url = "https://github.com/KhubaibKhan4/Alert-KMP"
         licenses {
             license {
-                name.set("MIT")
-                url.set("https://opensource.org/licenses/MIT")
+                name = "MIT"
+                url = "https://opensource.org/licenses/MIT"
             }
         }
-
-        // Specify developers information
         developers {
             developer {
-                id.set("khubaibkhan4")
-                name.set("Muhammad Khubaib Imtiaz")
-                email.set("18.bscs.803@gmail.com")
+                id = "khubaibkhan4"
+                name = "Muhammad Khubaib Imtiaz"
+                email = "18.bscs.803@gmail.com"
             }
         }
-
-        // Specify SCM information
         scm {
-            url.set("https://github.com/KhubaibKhan4/Alert-KMP")
+            url = "https://github.com/KhubaibKhan4/Alert-KMP"
         }
-    }
-
-    // Configure publishing to Maven Central
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-
-    // Enable GPG signing for all publications
-    signAllPublications()
-}
-
-task("testClasses") {}
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "17" // or "11" or "17"
     }
 }

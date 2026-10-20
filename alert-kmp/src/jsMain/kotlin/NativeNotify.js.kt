@@ -8,7 +8,6 @@ import org.w3c.notifications.NotificationPermission
 import org.w3c.notifications.Notification as NotificationManager
 
 actual fun Notify(message: String, duration: NotificationDuration) {
-    window.alert(message)
     if (!js("typeof Notification !== 'undefined'").unsafeCast<Boolean>()) {
         window.alert(message)
         return
@@ -140,5 +139,35 @@ actual fun createNotification(type: NotificationType): Notification = when (type
             document.body?.appendChild(notification)
         }
     }
-    else -> throw IllegalArgumentException("Unsupported notification type")
+    is NotificationType.ICON_ALERT -> object : Notification() {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
+            window.alert(if (title != null) "$title\n\n$message" else message)
+        }
+    }
+    is NotificationType.MENU_CONTEXT -> object : Notification() {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
+            val menu = document.createElement("div")
+            menu.textContent = title ?: message
+            menu.setAttribute("style", """
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #fff;
+                color: #222;
+                padding: 16px;
+                border-radius: 8px;
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+                z-index: 1000;
+            """.trimIndent())
+            type.actions.forEach { (label, action) ->
+                val button = document.createElement("button")
+                button.textContent = label
+                button.setAttribute("style", "display: block; width: 100%; margin-top: 8px; padding: 8px; cursor: pointer;")
+                button.addEventListener("click", { menu.remove(); action() })
+                menu.appendChild(button)
+            }
+            document.body?.appendChild(menu)
+        }
+    }
 }

@@ -19,6 +19,9 @@ import platform.UIKit.UILabel
 import platform.UIKit.UIView
 import platform.UIKit.UIViewAnimationOptionCurveEaseInOut
 import platform.UIKit.UIViewContentMode
+import platform.UIKit.UIViewController
+import platform.UIKit.UIWindow
+import platform.UIKit.UIWindowScene
 import platform.UserNotifications.UNAuthorizationOptionAlert
 import platform.UserNotifications.UNAuthorizationOptionSound
 import platform.UserNotifications.UNMutableNotificationContent
@@ -30,7 +33,7 @@ import platform.darwin.dispatch_async
 import platform.darwin.dispatch_get_main_queue
 
 actual fun Notify(message: String, duration: NotificationDuration) {
-    val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
+    val viewController = topViewController()
     if (viewController != null) {
         val alertController = UIAlertController.alertControllerWithTitle(
             title = UIDevice.currentDevice.systemName,
@@ -103,7 +106,7 @@ actual fun createNotification(type: NotificationType): Notification = when (type
     }
     NotificationType.ALERT -> object : Notification() {
         override fun show(message: String, title: String?, duration: NotificationDuration) {
-            val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
+            val viewController = topViewController()
             val alertController = UIAlertController.alertControllerWithTitle(
                 title = title ?: UIDevice.currentDevice.systemName,
                 message = message,
@@ -120,7 +123,7 @@ actual fun createNotification(type: NotificationType): Notification = when (type
 
     NotificationType.TOAST -> object : Notification() {
         override fun show(message: String, title: String?, duration: NotificationDuration) {
-            val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
+            val viewController = topViewController()
             if (viewController != null) {
                 dispatch_async(dispatch_get_main_queue()) {
                     val toastView = UIView(frame = CGRectMake(0.0, 0.0, 300.0, 50.0)).apply {
@@ -160,7 +163,7 @@ actual fun createNotification(type: NotificationType): Notification = when (type
 
     is NotificationType.ICON_ALERT -> object : Notification() {
         override fun show(message: String, title: String?, duration: NotificationDuration) {
-            val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
+            val viewController = topViewController()
             val icon = UIImage.imageNamed(type.iconName)
 
             val alertController = UIAlertController.alertControllerWithTitle(
@@ -188,7 +191,7 @@ actual fun createNotification(type: NotificationType): Notification = when (type
 
     is NotificationType.MENU_CONTEXT -> object : Notification() {
         override fun show(message: String, title: String?, duration: NotificationDuration) {
-            val viewController = UIApplication.sharedApplication.keyWindow?.rootViewController
+            val viewController = topViewController()
 
             val menuController = UIAlertController.alertControllerWithTitle(
                 title = title ?: "Choose an Action",
@@ -214,5 +217,34 @@ actual fun createNotification(type: NotificationType): Notification = when (type
         }
     }
 
-    else -> throw IllegalArgumentException("Unsupported notification type")
+    is NotificationType.CUSTOM -> object : Notification() {
+        override fun show(message: String, title: String?, duration: NotificationDuration) {
+            val alertController = UIAlertController.alertControllerWithTitle(
+                title = type.title,
+                message = message,
+                preferredStyle = UIAlertControllerStyleAlert
+            )
+            alertController.addAction(
+                UIAlertAction.actionWithTitle("OK", UIAlertActionStyleDefault, null)
+            )
+            dispatch_async(dispatch_get_main_queue()) {
+                topViewController()?.presentViewController(alertController, animated = true, completion = null)
+            }
+        }
+    }
+}
+
+/**
+ * The view controller to present on: the key window's root (scene-based apps, like Compose Multiplatform's, have no
+ * UIApplication.keyWindow), or whatever it is already presenting.
+ */
+private fun topViewController(): UIViewController? {
+    val window = UIApplication.sharedApplication.connectedScenes
+        .filterIsInstance<UIWindowScene>()
+        .flatMap { scene -> scene.windows.filterIsInstance<UIWindow>() }
+        .let { windows -> windows.firstOrNull { it.isKeyWindow() } ?: windows.firstOrNull() }
+        ?: UIApplication.sharedApplication.keyWindow
+    var controller = window?.rootViewController
+    while (controller?.presentedViewController != null) controller = controller.presentedViewController
+    return controller
 }
